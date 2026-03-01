@@ -15,12 +15,21 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
       --transition-delay: var(--mod-autoexpand-animation_delay);
       --transition-delay-after: var(--mod-autoexpand-collapse_delay);
       --collapsed-tab-bar-width: var(--mod-autoexpand-collapsed_width);
+      --win-linux-radius: 6px;
+      --mac-radius: 12px;
 
       @media (-moz-bool-pref: "zen.tabs.vertical.right-side"){
         --expanded-tab-bar-width: clamp(350px, var(--mod-autoexpand-expanded_width),9999px);
       }
       @media not (-moz-bool-pref: "zen.tabs.vertical.right-side"){
         --expanded-tab-bar-width: clamp(160px, var(--mod-autoexpand-expanded_width),9999px);
+      }
+
+      @media not (-moz-platform: macos) {
+        --os-radius: var(--win-linux-radius);
+      }
+      @media (-moz-platform: macos) {
+        --os-radius: var(--mac-radius);
       }
 
       /*Hide top workspaces button*/
@@ -103,7 +112,7 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
         }
 
         /*Elements with smooth transitions that are animated*/
-        #navigator-toolbox, #tabbrowser-tabbox, tab:is([zen-essential]),
+        #navigator-toolbox, #PersonalToolbar, #tabbrowser-tabbox, tab:is([zen-essential]),
         #zen-workspaces-button, #zen-workspaces-button .subviewbutton, #zen-media-focus-button::after,
         .tab-label-container, #zen-sidebar-foot-buttons > *:not(#zen-workspaces-button),
         zen-folder .tab-group-container, #tabbrowser-tabpanels{
@@ -133,12 +142,13 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
         }
 
         /*Elements with smooth transitions that are animated*/
-        #navigator-toolbox, #tabbrowser-tabbox, tab:is([zen-essential]), zen-folder .tab-group-container, #tabbrowser-tabpanels{
-        transition: clip-path var(--transition-duration) ease-in-out var(--transition-delay-smooth),
-        transform var(--transition-duration) ease-in-out var(--transition-delay-smooth),
-        opacity var(--transition-duration) ease-in-out var(--transition-delay-smooth),
-        width var(--transition-duration) ease-in-out var(--transition-delay-smooth),
-        max-height var(--transition-duration) ease var(--transition-delay-smooth) !important;
+        #navigator-toolbox, #PersonalToolbar, #tabbrowser-tabbox, tab:is([zen-essential]),
+        zen-folder .tab-group-container, #tabbrowser-tabpanels{
+          transition: clip-path var(--transition-duration) ease-in-out var(--transition-delay-smooth),
+          transform var(--transition-duration) ease-in-out var(--transition-delay-smooth),
+          opacity var(--transition-duration) ease-in-out var(--transition-delay-smooth),
+          width var(--transition-duration) ease-in-out var(--transition-delay-smooth),
+          max-height var(--transition-duration) ease var(--transition-delay-smooth) !important;
         }
       }
 
@@ -160,7 +170,7 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
         }
 
         /*Elements with smooth transitions that are animated*/
-        #navigator-toolbox, #tabbrowser-tabbox, #tabbrowser-tabpanels{
+        #navigator-toolbox, #PersonalToolbar, #tabbrowser-tabbox, #tabbrowser-tabpanels{
         transition: clip-path var(--transition-duration) ease-in-out var(--transition-delay-smooth),
         transform var(--transition-duration) ease-in-out var(--transition-delay-smooth),
         opacity var(--transition-duration) ease-in-out var(--transition-delay-smooth),
@@ -214,10 +224,10 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
         ~ #zen-appcontent-wrapper {
           z-index: 0 !important;
         }
-        &:not([zen-right-side="true"]) ~ #zen-appcontent-wrapper #tabbrowser-tabbox {
+        &:not([zen-right-side="true"]) ~ #zen-appcontent-wrapper #tabbrowser-tabbox, &:not([zen-right-side="true"]) ~ #zen-appcontent-wrapper #PersonalToolbar:not([collapsed=""]) {
           clip-path: inset(-2px -2px -2px calc(var(--expanded-tab-bar-width) - var(--collapsed-tab-bar-width) - 5px) round 10px);
         }
-        &[zen-right-side="true"] ~ #zen-appcontent-wrapper #tabbrowser-tabbox {
+        &[zen-right-side="true"] ~ #zen-appcontent-wrapper #tabbrowser-tabbox, &[zen-right-side="true"] ~ #zen-appcontent-wrapper #PersonalToolbar:not([collapsed=""]) {
           clip-path: inset(-2px calc(var(--expanded-tab-bar-width) - var(--collapsed-tab-bar-width) - 5px) -2px -2px round 10px);
         }
         &[zen-right-side="true"] ~ #zen-appcontent-wrapper #tabbrowser-tabbox[zen-split-view="true"] #tabbrowser-tabpanels {
@@ -301,7 +311,7 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
         transform: translateX(-14px);
         padding-right: 17px;
         .tabbrowser-tab .tab-background{
-          clip-path: inset(0px calc(var(--expanded-tab-bar-width) - var(--collapsed-tab-bar-width) - 18.5px) 0px 0px round 7px);
+          clip-path: inset(0px calc(var(--expanded-tab-bar-width) - var(--collapsed-tab-bar-width) - 18.5px) 0px 0px round var(--os-radius));
         }
       }
       }
@@ -310,7 +320,7 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
         transform: translateX(14px);
         padding-left: 17px;
         .tabbrowser-tab .tab-background{
-          clip-path: inset(0px 0px 0px calc(var(--expanded-tab-bar-width) - var(--collapsed-tab-bar-width) - 19.5px) round 7px);
+          clip-path: inset(0px 0px 0px calc(var(--expanded-tab-bar-width) - var(--collapsed-tab-bar-width) - 19.5px) round var(--os-radius));
         }
       }
       }
@@ -334,7 +344,10 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
       }
 
       /*initial clip path state*/
-      #tabbrowser-tabbox {
+      #tabbrowser-tabbox{
+      clip-path: inset(-2px -2px -2px -2px round 5px);
+      }
+      #PersonalToolbar{
       clip-path: inset(-2px -2px -2px -2px round 5px);
       }
 
@@ -399,18 +412,18 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
       /*Collapses split view tab group for square backgrounds on hover, during collapsed state*/
       @media not (-moz-bool-pref: "zen.tabs.vertical.right-side"){
         tab:not([zen-essential], [split-view="true"], [zen-glance-tab="true"]) .tab-background{
-          clip-path: inset(0px calc(var(--expanded-tab-bar-width) - var(--collapsed-tab-bar-width) - 4.5px) 0px 0px round 7px);
+          clip-path: inset(0px calc(var(--expanded-tab-bar-width) - var(--collapsed-tab-bar-width) - 4.5px) 0px 0px round var(--os-radius));
         }
         tab-group .tab-group-container {
-          clip-path: inset(0px calc(var(--expanded-tab-bar-width) - var(--collapsed-tab-bar-width) - 4.5px) 0px 0px round 6px);
+          clip-path: inset(0px calc(var(--expanded-tab-bar-width) - var(--collapsed-tab-bar-width) - 4.5px) 0px 0px round var(--os-radius));
         }
       }
       @media (-moz-bool-pref: "zen.tabs.vertical.right-side"){
         tab:not([zen-essential], [split-view="true"], [zen-glance-tab="true"]) .tab-background{
-          clip-path: inset(0px 0px 0px calc(var(--expanded-tab-bar-width) - var(--collapsed-tab-bar-width) - 4.5px) round 7px);
+          clip-path: inset(0px 0px 0px calc(var(--expanded-tab-bar-width) - var(--collapsed-tab-bar-width) - 4.5px) round var(--os-radius));
         }
         tab-group .tab-group-container {
-          clip-path: inset(0px 0px 0px calc(var(--expanded-tab-bar-width) - var(--collapsed-tab-bar-width) - 4.5px) round 6px);
+          clip-path: inset(0px 0px 0px calc(var(--expanded-tab-bar-width) - var(--collapsed-tab-bar-width) - 4.5px) round var(--os-radius));
         }
       }
 
