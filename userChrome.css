@@ -511,14 +511,19 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
         margin-inline-start: auto;
         }
         /*}*/
-        @media not (-moz-platform: macos) {
+        @media (-moz-platform: windows) {
+          #navigator-toolbox:not([zen-right-side="true"]) ~ #zen-appcontent-wrapper #nav-bar{
+          padding-left: 0px !important;
+          }
+        }
+        @media (-moz-platform: linux) {
           #navigator-toolbox:not([zen-right-side="true"]) ~ #zen-appcontent-wrapper #nav-bar{
           padding-left: 0px !important;
           }
         }
         @media (-moz-platform: macos) {
           #navigator-toolbox:not([zen-right-side="true"]) ~ #zen-appcontent-wrapper #nav-bar{
-          padding-left: 30px !important;
+          padding-left: 57px !important;
           }
         }
 
