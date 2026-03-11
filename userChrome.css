@@ -17,8 +17,9 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
       --transition-delay-after: 100ms;
       --expanded-tab-bar-width-a: 250px;
       --collapsed-tab-bar-width: 45px;
-      --win-linux-radius: 6px;
-      --mac-radius: 12px;
+      --win-radius: 6px;
+      --linux-radius: 8px;
+      --mac-radius: 10px;
 
       @media (-moz-bool-pref: "zen.tabs.vertical.right-side"){
         --expanded-tab-bar-width: clamp(350px, var(--expanded-tab-bar-width-a),9999px);
@@ -27,8 +28,11 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
         --expanded-tab-bar-width: var(--expanded-tab-bar-width-a);
       }
 
-      @media not (-moz-platform: macos) {
-        --os-radius: var(--win-linux-radius);
+      @media (-moz-platform: windows) {
+        --os-radius: var(--win-radius);
+      }
+      @media (-moz-platform: linux) {
+        --os-radius: var(--linux-radius);
       }
       @media (-moz-platform: macos) {
         --os-radius: var(--mac-radius);
@@ -542,10 +546,10 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
 
       /*collapses url bar when not hovered*/
       #navigator-toolbox:not([zen-right-side="true"]) #urlbar:not([focused=""]){
-      clip-path: inset(0 calc(var(--expanded-tab-bar-width) - var(--collapsed-tab-bar-width) - 4px) 0 0 round 8px) !important;
+      clip-path: inset(0 calc(var(--expanded-tab-bar-width) - var(--collapsed-tab-bar-width) - 4px) 0 0 round calc(var(--os-radius) + 2px)) !important;
       }
       #navigator-toolbox[zen-right-side="true"] #urlbar:not([focused=""]){
-      clip-path: inset(0 0 0 calc(var(--expanded-tab-bar-width) - var(--collapsed-tab-bar-width) - 4px) round 8px) !important;
+      clip-path: inset(0 0 0 calc(var(--expanded-tab-bar-width) - var(--collapsed-tab-bar-width) - 4px) round calc(var(--os-radius) + 2px)) !important;
       }
       @media not (-moz-bool-pref: "zen.view.compact.enable-at-startup"),
       (-moz-bool-pref: "zen.view.use-single-toolbar") {
