@@ -86,6 +86,14 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
         }
       }
 
+      /*fades sleeping folders*/
+      @media (-moz-bool-pref: "mod.autoexpand.fade_sleeping_folders") {
+        zen-folder:not(
+          :has(.tabbrowser-tab:not([pending="true"]))){
+          opacity: 0.5 !important;
+          }
+      }
+
       /*Removes the pinned tabs thin line separator*/
       @media (-moz-bool-pref: "mod.autoexpand.remove_line_separator") {
         .pinned-tabs-container-separator{
@@ -560,7 +568,7 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
       /*Ensures that the mediaplayer has the correct height*/
       #zen-media-focus-button{
       display: flex !important;
-      transform: translateX(calc(var(--collapsed-tab-bar-width)/2 - 24px));
+      transform: translateX(calc(var(--collapsed-tab-bar-width)/2 - 23px));
       }
 
       /*Puts the url bar in the right place for the single toolbar mode, since we changed navigator-toolbox to position: absolute*/
