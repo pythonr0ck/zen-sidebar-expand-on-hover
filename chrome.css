@@ -11,20 +11,19 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
   not (-moz-bool-pref: "zen.view.compact.hide-tabbar") {
 
     :root:not([sizemode="fullscreen"]){
-      --transition-duration: 200ms;
-      --transition-delay: 0ms;
-      --transition-delay-after: 100ms;
-      --expanded-tab-bar-width-a: 250px;
-      --collapsed-tab-bar-width: 45px;
+      --transition-duration: var(--mod-autoexpand-animation_duration);
+      --transition-delay: var(--mod-autoexpand-animation_delay);
+      --transition-delay-after: var(--mod-autoexpand-collapse_delay);
+      --collapsed-tab-bar-width: var(--mod-autoexpand-collapsed_width);
       --win-radius: 6px;
       --linux-radius: 8px;
       --mac-radius: 10px;
 
       @media (-moz-bool-pref: "zen.tabs.vertical.right-side"){
-        --expanded-tab-bar-width: clamp(350px, var(--expanded-tab-bar-width-a),9999px);
+        --expanded-tab-bar-width: clamp(350px, var(--mod-autoexpand-expanded_width),9999px);
       }
       @media not (-moz-bool-pref: "zen.tabs.vertical.right-side"){
-        --expanded-tab-bar-width: var(--expanded-tab-bar-width-a);
+        --expanded-tab-bar-width: clamp(160px, var(--mod-autoexpand-expanded_width),9999px);
       }
 
       @media (-moz-platform: windows) {
@@ -41,16 +40,6 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
       @media (-moz-bool-pref: "mod.autoexpand.hide_workspace_indicator") {
         .zen-current-workspace-indicator {
           display: none !important;
-        }
-      }
-
-      /*Makes scrolbar clickable*/
-      scrollbox:nth-child(5) {
-        scrollbar-width: thin !important;
-      }
-      @media (-moz-bool-pref: "zen.view.sidebar-expanded") {
-        scrollbox:nth-child(5) {
-          scrollbar-width: auto !important;
         }
       }
 
