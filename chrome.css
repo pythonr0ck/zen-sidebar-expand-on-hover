@@ -1000,32 +1000,26 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
         #browser:has(#navigator-toolbox:not([zen-right-side="true"])) {
             #zen-appcontent-wrapper {
                 overflow: visible !important;
-
-                /*
-                Used to affect window buttons>[what I presume is always the close button?]: #zen-appcontent-navbar-container:has(#nav-bar>.titlebar-buttonbox-container:last-child)
-                ^ I don't see how the window buttons relate to the padding
-                    --to-do: this might be some accidental (or now irrelevent) selection the original developer made??
-                ^ Removing this pseudo prevent this issue from happening:
-                Quote: (#80) - https://github.com/Uiniel/zen-mods/issues/80:
-                i click on a extension and it opens a popup, the navigation buttons, url bar and extension buttons move to the right side a little bit and in result the right side extension buttons go under the window controls.
-                ^
-                */
                 #nav-bar {
                     margin-left: calc(
                         0px - var(--zen-toolbox-max-width)
                     ) !important;
-                    /*ENSURES width of toolbar is adjusted too, fixes #80*/
-                    width: calc(0px - var(--zen-toolbox-max-width)) + 100% !important;
-                    /*to-do; bad logic - Add 5px padding by default, unless var zen-element-seperation is greater*/
-                    padding-left: clamp(
-                        5px,
-                        var(--zen-element-separation),
-                        50px
-                    ) !important;
+                    /*ENSURES width of toolbar is adjusted too, fixes #80 (in old mod)
+                    width: calc(0px - var(--zen-toolbox-max-width)) + 100% !important;*/
+                    padding-left: 11px !important;
 
                     #nav-bar {
                         margin-inline-start: var(--zen-element-separation);
                     }
+                }
+            }
+            /* Hide empty top buttons */
+            @media (not (-moz-platform: macos)) {
+                #zen-sidebar-top-buttons:not([customizing]):has(
+                    #zen-sidebar-top-buttons-customization-target:empty, /* When no toolbar items */
+                    #zen-sidebar-top-buttons-customization-target > #zen-sidebar-top-buttons-separator:only-child /* Sometimes this toolbar item shows up by itself, no idea why*/
+                    ) {
+                    min-height: 8px !important;
                 }
             }
         }
