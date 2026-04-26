@@ -2,9 +2,13 @@
 ![](./screenshot.png)
 
 Personal fork to add feature + aesthetics parity with my [past implementation of a expand-sidebar-on-hover mod](https://github.com/pythonr0ck/zen-mods).
+(Old implementaion still works as of 1.19.9b+)
 
-- **IMPORTANT**: Turn the mod off or on with the fullscreen toggle (F11)
-- **IMPORTANT**: Use the mod in single toolbar or multiple toolbars mode, never on collapsed toolbar mode
+### Changes so far (not done yet!):
+- ADD: Move tab sidebar downward of nav buttons [MvSB]
+
+**IMPORTANT**: Turn the mod off or on with the fullscreen toggle (F11)
+**IMPORTANT**: Use the mod in single toolbar or multiple toolbars mode, never on collapsed toolbar mode
 
 ## Customization Options
 In the mods menu, clicking on the gear icon will give you several customization options:
