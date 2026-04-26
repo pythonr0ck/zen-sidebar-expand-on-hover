@@ -1010,7 +1010,7 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
                 i click on a extension and it opens a popup, the navigation buttons, url bar and extension buttons move to the right side a little bit and in result the right side extension buttons go under the window controls.
                 ^
                 */
-                #zen-appcontent-navbar-container {
+                #nav-bar {
                     margin-left: calc(
                         0px - var(--zen-toolbox-max-width)
                     ) !important;
@@ -1026,34 +1026,6 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
                     #nav-bar {
                         margin-inline-start: var(--zen-element-separation);
                     }
-
-                    > #PersonalToolbar {
-                      /*padding-left: 40px !important;  [MvSB] TODO: Sidebar-Navbar Buttons Unclickable until sidebar expanded - make toolbar behind sidebar (z-index doesnt work) or move it upward on top of sidebar */
-                    }
-                }
-            }
-            /* Move sidebar content up and down when bookmark toolbar is shown */
-            @media (not (-moz-platform: macos)) {
-                #zen-sidebar-top-buttons:not([customizing]) {
-                /*                 On Toolbar: 38px - 30px = 8px  ->  Moves collapsed sidebar content DOWN
-                Not on toolbar: [unset value] - 30px = -30px  ->  Collapsed sidebar content UP */
-                margin-top: calc(
-                    var(--zen-toolbar-height-with-bookmarks) -
-                    var(--zen-toolbar-height)
-                    ) !important;
-                }
-
-                /* Hide empty top buttons */
-                #zen-sidebar-top-buttons:not([customizing]):has(
-                #zen-sidebar-top-buttons-customization-target:empty, /* When no toolbar items */
-                #zen-sidebar-top-buttons-customization-target > #zen-sidebar-top-buttons-separator:only-child /* Sometimes this toolbar item shows up by itself, no idea why*/
-                ) {
-                    /* Remove unnecessary empty space (-30px) */ /* and Move collapsed sidebar content up and down when bookmark toolbar is shown */
-                    margin-top: calc(
-                    -30px + var(--zen-toolbar-height-with-bookmarks) -
-                    var(--zen-toolbar-height)
-                    ) !important;
-                    pointer-events: none; /* Prevent empty buttons from interfering with sidebar hover */
                 }
             }
         }
