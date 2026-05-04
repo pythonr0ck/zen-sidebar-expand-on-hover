@@ -50,6 +50,12 @@
         "defaultValue": "100ms"
     },
     {
+        "property": "mod.autoexpand.essentials_compact",
+        "label": "Displays all essentials tabs into a compact grid (pairs best with 'Delay before expanding' for faster navigation without accidental triggers)",
+        "type": "checkbox",
+        "defaultValue": false
+    },
+    {
         "property": "mod.autoexpand.essentials_vertical",
         "label": "Makes all essentials visible in the minimized sidebar",
         "type": "checkbox",
