@@ -949,6 +949,9 @@ EXPERIMENTAL FEATURES
 }
 
 /* Collapsed Essential Style pref - Condensed [EES]*/
+/* Make 'Delay before expanding' work with collasped essentials style pref (suppress expanded behaviour until fully expanded):
+use same implementation: https://github.com/StormAnon/zen-sidebar-expand-on-hover/issues/19
+*/
 /* Multi-option pref
 @media (-moz-pref("mod.autoexpand.collapsed_essentials_style", "condensed")) {
     :root {
