@@ -1,13 +1,13 @@
 # Sidebar Expand on Hover
 ![](./screenshot.png)
 
-Personal fork to add feature + aesthetics parity with my [past implementation of a expand-sidebar-on-hover mod](https://github.com/pythonr0ck/zen-mods) (still works as of 1.19.11b).
+Personal fork to add feature + aesthetics parity with my [past implementation of a expand-sidebar-on-hover mod](https://github.com/pythonr0ck/zen-mods) (still works as of 1.19.13b).
 
 ### Changes so far (not done yet!):
 - ADD: Move tab sidebar downward of nav buttons [MvSB]
 - feat: Collapsed Essentials Styles [ESS]
 
-**IMPORTANT**: Turn the mod off or on with the fullscreen toggle (F11)
+**IMPORTANT**: Turn the mod off or on with the fullscreen toggle (F11)  
 **IMPORTANT**: Use the mod in single toolbar or multiple toolbars mode, never on collapsed toolbar mode
 
 ## Customization Options
@@ -19,6 +19,7 @@ In the mods menu, clicking on the gear icon will give you several customization 
 - Hide or show the workspace indicator
 
 ## How to Download
+> Occassionally, I may make some breaking changes to the mod preferences. Sometimes a full reinstall of the mod is required.
 
 ### Download with Sine Mod Manager
 Using Sine will allow this mod to be updated as this mod receives updates through github.

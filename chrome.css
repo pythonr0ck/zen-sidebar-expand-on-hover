@@ -942,10 +942,9 @@ EXPERIMENTAL FEATURES
 
 /* Set default values */
 :root {
-    /*--theme-sidebar_expand_on_hover-essentials_expanded_tab_width: 75px; /*to-do, - should be actual width of each essential tab, should only be adjusted if some other mod changes the tab size*/
-    --theme-sidebar_expand_on_hover-essentials_collapsed_tab_margin: -14px; /*adjust vertical spacing between each essential tab*/
-    --theme-sidebar_expand_on_hover-essentials_collapsed_columns: 2; /*adjustable number of columns*/
-    );
+    /*--mod-autoexpand-essentials_expanded_tab_width: 75px; /*to-do, - should be actual width of each essential tab, should only be adjusted if some other mod changes the tab size*/
+    /*--mod-autoexpand-essentials_collapsed_tab_margin: -14px; /*adjust vertical spacing between each essential tab*/
+    /*--mod-autoexpand-essentials_collapsed_columns: 2; /*adjustable number of columns*/
 }
 
 /* Collapsed Essential Style pref - Condensed [EES]*/
@@ -984,32 +983,32 @@ use same implementation: https://github.com/StormAnon/zen-sidebar-expand-on-hove
             * we use a workaround...)
             * This solution determines the current height of the expanded essentials tab container
             * based on the number of children (.tabbrowser-tab)
-            * and sets the --theme-sidebar_expand_on_hover-essentials_collapsed_tab_height variable accordingly.
+            * and sets the --mod-autoexpand-essentials_collapsed_tab_height variable accordingly.
             */
             /* --- 0 children (Does not have a 1st child) --- */
             &:not(:has(.zen-essentials-container > .tabbrowser-tab:first-child)) {
-                --theme-sidebar_expand_on_hover-essentials_collapsed_tab_height: 0px; /*Each row of essentials is +50px tall*/
+                --mod-autoexpand-essentials_collapsed_tab_height: 0px; /*Each row of essentials is +50px tall*/
             }
 
             /* --- ROW 1: 1 to 4 children (Does not have a 5th child) --- */
             &:has(.zen-essentials-container > .tabbrowser-tab:nth-child(1)):not(
             :has(.zen-essentials-container > .tabbrowser-tab:nth-child(5))
             ) {
-                --theme-sidebar_expand_on_hover-essentials_collapsed_tab_height: 50px; /*Each row of essentials is +50px tall*/
+                --mod-autoexpand-essentials_collapsed_tab_height: 50px; /*Each row of essentials is +50px tall*/
             }
 
             /* --- ROW 2: 5 to 8 children (Has a 5th child AND does not have a 9th child) --- */
             &:has(.zen-essentials-container > .tabbrowser-tab:nth-child(5)):not(
             :has(.zen-essentials-container > .tabbrowser-tab:nth-child(9))
             ) {
-                --theme-sidebar_expand_on_hover-essentials_collapsed_tab_height: 100px;
+                --mod-autoexpand-essentials_collapsed_tab_height: 100px;
             }
 
             /* --- ROW 3: 9 to 12 children (Has a 9th child AND does not have a 13th child) --- */
             &:has(.zen-essentials-container > .tabbrowser-tab:nth-child(9)):not(
             :has(.zen-essentials-container > .tabbrowser-tab:nth-child(13))
             ) {
-                --theme-sidebar_expand_on_hover-essentials_collapsed_tab_height: 150px;
+                --mod-autoexpand-essentials_collapsed_tab_height: 150px;
             }
             /*
              * Compact-Style Collapsed Essentials Implementation NOTE:
@@ -1037,19 +1036,17 @@ use same implementation: https://github.com/StormAnon/zen-sidebar-expand-on-hove
                 ) !important;
 
                 transition:
-                    transform var(--theme-sidebar_expand_on_hover-transition_speed)
+                    transform var(--mod-autoexpand-animation_duration)
                     ease-out,
                     display 0s linear 0.3s !important;
-                width: var(
-                    --theme-sidebar_expand_on_hover-essentials_collapsed_width
-                ) !important; /* adjustable - horizontal spacing*/
+                width: 150px !important; /* adjustable - horizontal spacing*/
 
                 transform: scaleX(
                     0.25
                 ) !important; /* Squish Essentials to fit into collapsed sidebar */
                 transform-origin: top left !important;
                 height: var(
-                    --theme-sidebar_expand_on_hover-essentials_collapsed_tab_height
+                    --mod-autoexpand-essentials_collapsed_tab_height
                 ) !important;
 
                 > .tabbrowser-tab {
