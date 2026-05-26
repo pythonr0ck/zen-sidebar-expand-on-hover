@@ -1035,10 +1035,11 @@ use same implementation: https://github.com/StormAnon/zen-sidebar-expand-on-hove
                 var(--zen-toolbox-padding) * .5
                 ) !important;
 
+                /* Squish animation
                 transition:
                     transform var(--mod-autoexpand-animation_duration)
-                    ease-out,
-                    display 0s linear 0.3s !important;
+                    ease-out !important;
+                */
                 width: 150px !important; /* adjustable - horizontal spacing*/
 
                 transform: scaleX(
