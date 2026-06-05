@@ -354,17 +354,19 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
       z-index: 1000 !important;
       }
 
-      /*Adds dynamic drop shadow to this element that parents tabbrowser-tabbox so the shadow follows the web page with the clip path*/
-      #zen-tabbox-wrapper {
-      filter: drop-shadow(0px 0px 6px rgba(0, 0, 0, 0.2));
+      /* Taxing on performance, but is required for expanded -> collasped sidebar background transitioning*/
+      #tabbrowser-tabbox {
+        clip-path: inset(-2px -2px -2px -2px round 5px);
+      }
+      #PersonalToolbar {
+        clip-path: inset(-2px -2px -2px -2px round 5px);
       }
 
-      /*initial clip path state*/
-      #tabbrowser-tabbox{
-      clip-path: inset(-2px -2px -2px -2px round 5px);
-      }
-      #PersonalToolbar{
-      clip-path: inset(-2px -2px -2px -2px round 5px);
+      /* Restricts the heavy shadow (purely cosmetic) to fancy mode */
+      @media (-moz-pref("mod.autoexpand.performance_mode", "fancy")) {
+        #zen-tabbox-wrapper {
+          filter: drop-shadow(0px 0px 6px rgba(0, 0, 0, 0.2));
+        }
       }
 
       @media (-moz-bool-pref: "zen.tabs.vertical.right-side"){
