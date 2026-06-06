@@ -253,17 +253,39 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
         .tab-label-container{
           opacity: 100% !important;
         }
-        #zen-sidebar-foot-buttons > *:not(#zen-workspaces-button){
-        opacity: 100% !important;
+        @media (-moz-pref("mod.autoexpand.collapsed_footer_style", "standard")) {
+            #zen-sidebar-foot-buttons {
+                transform: translateX(0px);
+                flex-direction: row !important;
+                justify-content: normal !important;
+                /* Continue to visuallly center when collapsed */
+                padding-left: 6px !important;
+                padding-right: 6px !important;
+
+                > :not([notification]):not(:first-child) {
+                display: flex !important;
+                }
+
+                @media not (-moz-bool-pref: "mod.autoexpand.hide_workspace_indicator") {
+                    > #zen-workspaces-button {
+                        display: flex !important;
+                    }
+                }
+            }
         }
-        #zen-workspaces-button {
-        justify-content: center !important;
-        transform: translateX(0px);
-        }
-        #zen-workspaces-button .subviewbutton {
-        position: relative !important;
-        transform: scale(1);
-        opacity: 100% !important;
+        @media (-moz-pref("mod.autoexpand.collapsed_footer_style", "centered_workspace")) {
+          #zen-sidebar-foot-buttons > *:not(#zen-workspaces-button){
+            opacity: 100% !important;
+          }
+          #zen-workspaces-button {
+            justify-content: center !important;
+            transform: translateX(0px);
+          }
+          #zen-workspaces-button .subviewbutton {
+            position: relative !important;
+            transform: scale(1);
+            opacity: 100% !important;
+          }
         }
         #zen-media-focus-button::after {
         clip-path: inset(0px 0px 0px 0px);
@@ -683,41 +705,61 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
         opacity: 0% !important;
       }
 
-      #zen-sidebar-foot-buttons > *:not(#zen-workspaces-button){
-      opacity: 0% !important;
-      }
+      @media (-moz-pref("mod.autoexpand.collapsed_footer_style", "standard")) {
+            #zen-sidebar-foot-buttons {
+                transform: translateX(calc(var(--collapsed-tab-bar-width)/2 - var(--expanded-tab-bar-width)/2 + 2px));
+                flex-direction: column-reverse !important;
+                justify-content: center !important;
 
-      /*removes gap in the foot buttons*/
-      #zen-sidebar-foot-buttons{
-      gap: 0 !important;
-      }
+                /* Display only first foot item and current download status/other status that rely on the notification attribute */
+                > :not([notification]):not(:first-child) {
+                    display: none !important;
+                }
 
-      /*Makes so that the selected workspace button is centered in the collapsed state. Moves the download button to the outside edge*/
-      #zen-workspaces-button {
-      justify-content: center !important;
-      .subviewbutton:not([active="true"]) {
-        opacity: 0% !important;
+                @media not (-moz-bool-pref: "mod.autoexpand.hide_workspace_indicator") {
+                    > #zen-workspaces-button {
+                    display: none !important;
+                    }
+                }
+            }
       }
-      .subviewbutton[active="true"]{
-        transform: scale(1.6);
-        transform-origin: center;
-        position: absolute !important;
-      }
-      }
-      #navigator-toolbox:not([zen-right-side="true"]) #zen-workspaces-button {
-      transform: translateX(calc(var(--collapsed-tab-bar-width)/2 - var(--expanded-tab-bar-width)/2 + 2px));
-      }
-      #navigator-toolbox[zen-right-side="true"] {
-      #zen-workspaces-button {
-      transform: translateX(calc(var(--expanded-tab-bar-width)/2 - var(--collapsed-tab-bar-width)/2 - 2px));
-      }
-      #downloads-button{
-      order: 999 !important;
-      }
-      #zen-create-new-button{
-      order: -1 !important;
-      }
-      }
+      @media (-moz-pref("mod.autoexpand.collapsed_footer_style", "centered_workspace")) {
+            #zen-sidebar-foot-buttons > *:not(#zen-workspaces-button){
+                opacity: 0% !important;
+            }
+
+            /*removes gap in the foot buttons*/
+            #zen-sidebar-foot-buttons{
+                gap: 0 !important;
+            }
+
+            /*Makes so that the selected workspace button is centered in the collapsed state. Moves the download button to the outside edge*/
+            #zen-workspaces-button {
+                justify-content: center !important;
+                .subviewbutton:not([active="true"]) {
+                    opacity: 0% !important;
+                }
+                .subviewbutton[active="true"]{
+                    transform: scale(1.6);
+                    transform-origin: center;
+                    position: absolute !important;
+                }
+            }
+            #navigator-toolbox:not([zen-right-side="true"]) #zen-workspaces-button {
+                transform: translateX(calc(var(--collapsed-tab-bar-width)/2 - var(--expanded-tab-bar-width)/2 + 2px));
+            }
+            #navigator-toolbox[zen-right-side="true"] {
+                #zen-workspaces-button {
+                    transform: translateX(calc(var(--expanded-tab-bar-width)/2 - var(--collapsed-tab-bar-width)/2 - 2px));
+                }
+                #downloads-button{
+                    order: 999 !important;
+                }
+                #zen-create-new-button{
+                    order: -1 !important;
+                }
+            }
+        }
 
       /*collapses the thin line separator*/
       @media not (-moz-bool-pref: "zen.tabs.vertical.right-side"){

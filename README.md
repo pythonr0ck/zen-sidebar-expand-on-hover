@@ -6,6 +6,7 @@ Personal fork to add feature + aesthetics parity with my [past implementation of
 ### Changes so far (not done yet!):
 - ADD: Move tab sidebar downward of nav buttons [MvSB]
 - feat: Collapsed Essentials Styles [ESS]
+- feat: Collapsed Footer Buttons Layout [CFL]
 
 **IMPORTANT**: Turn the mod off or on with the fullscreen toggle (F11)  
 **IMPORTANT**: Use the mod in single toolbar or multiple toolbars mode, never on collapsed toolbar mode

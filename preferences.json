@@ -84,5 +84,21 @@
         "label": "Remove the thin line separator under the pinned tabs",
         "type": "checkbox",
         "defaultValue": false
+    },
+    {
+        "property": "mod.autoexpand.collapsed_footer_style",
+        "label": "Collapsed Footer Buttons Layout",
+        "type": "dropdown",
+        "defaultValue": "standard",
+        "options": [
+          {
+            "label": "Standard (Centered)",
+            "value": "standard"
+          },
+          {
+            "label": "Centered Active Workspace",
+            "value": "centered_workspace"
+          }
+        ]
     }
 ]
