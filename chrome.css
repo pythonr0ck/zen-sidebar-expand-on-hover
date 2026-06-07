@@ -47,7 +47,7 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
       tab:is([zen-essential]){
         width: calc(var(--collapsed-tab-bar-width) - 5px) !important;
       }
-      @media (-moz-bool-pref: "mod.autoexpand.essentials_vertical") {
+      @media (-moz-pref("mod.autoexpand.collapsed_essentials_style", "vertical")) {
         .zen-essentials-container {
           grid-template-columns: 1fr !important;
           max-height: 175px;
@@ -991,18 +991,8 @@ EXPERIMENTAL FEATURES
     /*--mod-autoexpand-essentials_collapsed_columns: 2; /*adjustable number of columns*/
 }
 
-/* Collapsed Essential Style pref - Condensed [EES]*/
-/* Make 'Delay before expanding' work with collasped essentials style pref (suppress expanded behaviour until fully expanded):
-use same implementation: https://github.com/StormAnon/zen-sidebar-expand-on-hover/issues/19
-*/
-/* Multi-option pref
-@media (-moz-pref("mod.autoexpand.collapsed_essentials_style", "condensed")) {
-    :root {
-
-    }
-}
-*/
-@media (-moz-bool-pref: "mod.autoexpand.essentials_compact") {
+/* Collapsed Essential Style - Compact */
+@media (-moz-pref("mod.autoexpand.collapsed_essentials_style", "compact")) {
     :root:not(
         [zen-compact-mode="true"],
         :has(#customization-container:not([hidden]))
