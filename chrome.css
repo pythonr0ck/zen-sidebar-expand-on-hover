@@ -262,7 +262,7 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
                 padding-left: 6px !important;
                 padding-right: 6px !important;
 
-                > :not([notification]):not(:first-child) {
+                > :not(:first-child) {
                 display: flex !important;
                 }
 
@@ -712,15 +712,28 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
                 justify-content: center !important;
 
                 /* Display only first foot item and current download status/other status that rely on the notification attribute */
+                /*:not([notification]):not([checked]):not(:first-child) - include toggleable states too (like if the sidebar is open)*/
                 > :not([notification]):not(:first-child) {
                     display: none !important;
                 }
 
-                @media not (-moz-bool-pref: "mod.autoexpand.hide_workspace_indicator") {
-                    > #zen-workspaces-button {
-                    display: none !important;
+                /* Show current workspace as a foot item instead if pref enabled
+                @media (-moz-bool-pref: "mod.autoexpand.hide_workspace_indicator") {
+                  /*Makes so that the selected workspace button is centered in the collapsed state. Moves the download button to the outside edge* /
+                  #zen-workspaces-button {
+                    display: flex !important;
+                    justify-content: center !important;
+                    .subviewbutton:not([active="true"]) {
+                      opacity: 0% !important;
                     }
+                    .subviewbutton[active="true"]{
+                      transform: scale(1.6);
+                      transform-origin: center;
+                      position: absolute !important;
+                    }
+                  }
                 }
+                */
             }
       }
       @media (-moz-pref("mod.autoexpand.collapsed_footer_style", "centered_workspace")) {
@@ -992,6 +1005,10 @@ EXPERIMENTAL FEATURES
 }
 
 /* Collapsed Essential Style - Compact */
+/*   [EES:TODO] - Make 'Delay before expanding' work with collasped essentials style pref (suppress expanded behaviour until fully expanded):
+     use same implementation: https://github.com/StormAnon/zen-sidebar-expand-on-hover/issues/19
+     (*StormAnon is working on a rewrite of the mod, so it may be a while till this feature is implemented)
+*/
 @media (-moz-pref("mod.autoexpand.collapsed_essentials_style", "compact")) {
     :root:not(
         [zen-compact-mode="true"],

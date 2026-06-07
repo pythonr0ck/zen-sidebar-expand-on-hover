@@ -51,7 +51,7 @@
     },
     {
         "property": "mod.autoexpand.collapsed_essentials_style",
-        "label": "Collapsed Essentials Layout Style",
+        "label": "Collapsed Essentials Layout Style (default: Compact)",
         "type": "dropdown",
         "defaultValue": "compact",
         "options": [
@@ -91,17 +91,17 @@
     },
     {
         "property": "mod.autoexpand.collapsed_footer_style",
-        "label": "Collapsed Footer Buttons Layout",
+        "label": "Collapsed Footer Buttons Layout (default: Standard)",
         "type": "dropdown",
         "defaultValue": "standard",
         "options": [
           {
-            "label": "Standard (Centered)",
-            "value": "standard"
-          },
-          {
             "label": "Centered Active Workspace",
             "value": "centered_workspace"
+          },
+          {
+            "label": "Standard (Centered)",
+            "value": "standard"
           }
         ]
     }
