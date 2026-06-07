@@ -50,16 +50,20 @@
         "defaultValue": "100ms"
     },
     {
-        "property": "mod.autoexpand.essentials_compact",
-        "label": "Display all essentials tabs into a compact grid",
-        "type": "checkbox",
-        "defaultValue": false
-    },
-    {
-        "property": "mod.autoexpand.essentials_vertical",
-        "label": "Make all essentials visible in the minimized sidebar",
-        "type": "checkbox",
-        "defaultValue": false
+        "property": "mod.autoexpand.collapsed_essentials_style",
+        "label": "Collapsed Essentials Layout Style",
+        "type": "dropdown",
+        "defaultValue": "compact",
+        "options": [
+          {
+            "label": "Compact Grid",
+            "value": "compact"
+          },
+          {
+            "label": "Vertical List",
+            "value": "vertical"
+          }
+        ]
     },
     {
         "property": "mod.autoexpand.fade_sleeping_tabs",
