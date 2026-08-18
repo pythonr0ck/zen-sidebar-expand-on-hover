@@ -69,11 +69,17 @@
         "property": "mod.autoexpand.fade_sleeping_tabs",
         "label": "Slightly fade Unloaded (Sleeping) Tabs",
         "type": "checkbox",
-        "defaultValue": true
+        "defaultValue": false
     },
     {
         "property": "mod.autoexpand.fade_sleeping_folders",
         "label": "Slightly fade folders with no loaded tabs",
+        "type": "checkbox",
+        "defaultValue": true
+    },
+    {
+        "property": "mod.autoexpand.disable_window_dragging",
+        "label": "Disable window dragging",
         "type": "checkbox",
         "defaultValue": true
     },
