@@ -1,9 +1,9 @@
 # Sidebar Expand on Hover
 ![](./screenshot.png)
 
-Personal fork to add feature + aesthetics parity with my [past implementation of a expand-sidebar-on-hover mod](https://github.com/pythonr0ck/zen-mods) (still works as of 1.19.13b).
+Personal fork (still works as of 1.21.14b) to add feature + aesthetics parity with my [past implementation of a expand-sidebar-on-hover mod](https://github.com/pythonr0ck/zen-mods).
 
-### Changes so far (not done yet!):
+### Changes so far:
 - ADD: Move tab sidebar downward of nav buttons [MvSB]
 - feat: Collapsed Essentials Styles [ESS]
 - feat: Collapsed Footer Buttons Layout [CFL]
@@ -15,16 +15,17 @@ Personal fork to add feature + aesthetics parity with my [past implementation of
 In the mods menu, clicking on the gear icon will give you several customization options:
 - Collapsed Essentials Styles:
   - None: Always in Expanded State; best for performance
-  - Compact: Make all essential tabs visible in a compact grid
+  - *Compact: Make all essential tabs visible in a compact grid*
   - Vertical: Make all essential tabs visible in the collapsed sidebar
 - Fade unloaded (sleeping) tabs
+- *Disable window dragging*
 - Control Collapsed and expanded widths
 - Control the delay to expand and animation Speeds
-- Hide or show the workspace indicator
+- *Hide or show the workspace indicator*
 - Collapsed Footer Buttons Layout:
   - None: Always in Expanded State; best for performance
   - Centered Active Workspace: Show current workspace (same as the original mod)
-  - Standard: Center Buttons, dynamically show when item is being downloaded
+  - *Standard: Center Buttons, dynamically show when item is being downloaded*
 
 ## How to Download
 > Occassionally, I may make some breaking changes to the mod preferences. Sometimes a full reinstall of the mod is required.
