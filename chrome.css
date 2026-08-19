@@ -1003,6 +1003,7 @@ EXPERIMENTAL FEATURES
 @keyframes zen-trigger-expanded {
   to {
     --is-collapsed: ;
+    --is-collapsed-var: ;
     --is-expanded: initial;
   }
 }
@@ -1011,6 +1012,7 @@ EXPERIMENTAL FEATURES
 #navigator-toolbox {
   /* Default state: Collapsed */
   --is-collapsed: initial;
+  --is-collapsed-var: inherit;
   --is-expanded: ;
 
   /* Expanded state trigger */
@@ -1025,18 +1027,7 @@ EXPERIMENTAL FEATURES
   }
 }
 
-/* Set default values */
-:root {
-    /*--mod-autoexpand-essentials_expanded_tab_width: 75px; /*to-do, - should be actual width of each essential tab, should only be adjusted if some other mod changes the tab size*/
-    /*--mod-autoexpand-essentials_collapsed_tab_margin: -14px; /*adjust vertical spacing between each essential tab*/
-    /*--mod-autoexpand-essentials_collapsed_columns: 2; /*adjustable number of columns*/
-}
-
 /* Collapsed Essential Style - Compact */
-/*   [EES:TODO] - Make 'Delay before expanding' work with collasped essentials style pref (suppress expanded behaviour until fully expanded):
-     use same implementation: https://github.com/StormAnon/zen-sidebar-expand-on-hover/issues/19
-     (* StormAnon is working on a rewrite of the mod, so it may be a while till this feature is implemented)
-*/
 @media (-moz-pref("mod.autoexpand.collapsed_essentials_style", "compact")) {
     :root:not(
         [zen-compact-mode="true"],
@@ -1054,16 +1045,16 @@ EXPERIMENTAL FEATURES
         --zen-sidebar-width: var(--zen-toolbox-max-width) !important;
 
         /* Collapsed Zen Essentials (On Collapsed Bar)*/
-        #navigator-toolbox:not(:hover, [has-popup-menu="true"], [movingtab], [flash-popup]), &:has(#urlbar[open], toolbarbutton[open="true"]:not(#zen-sidepanel-button)) {
+        #navigator-toolbox {
             /*
-            * Determine Essentials Container Height
-            *
-            * (Since JS is obviously not available to get the actual height of the expanded container directly,
-            * we use a workaround...)
-            * This solution determines the current height of the expanded essentials tab container
-            * based on the number of children (.tabbrowser-tab)
-            * and sets the --mod-autoexpand-essentials_collapsed_tab_height variable accordingly.
-            */
+             * Determine Essentials Container Height
+             *
+             * (Since JS is obviously not available to get the actual height of the expanded container directly,
+             * we use a workaround...)
+             * This solution determines the current height of the expanded essentials tab container
+             * based on the number of children (.tabbrowser-tab)
+             * and sets the --mod-autoexpand-essentials_collapsed_tab_height variable accordingly.
+             */
             /* --- 0 children (Does not have a 1st child) --- */
             &:not(:has(.zen-essentials-container > .tabbrowser-tab:first-child)) {
                 --mod-autoexpand-essentials_collapsed_tab_height: 0px; /*Each row of essentials is +50px tall*/
@@ -1071,21 +1062,21 @@ EXPERIMENTAL FEATURES
 
             /* --- ROW 1: 1 to 4 children (Does not have a 5th child) --- */
             &:has(.zen-essentials-container > .tabbrowser-tab:nth-child(1)):not(
-            :has(.zen-essentials-container > .tabbrowser-tab:nth-child(5))
+                :has(.zen-essentials-container > .tabbrowser-tab:nth-child(5))
             ) {
                 --mod-autoexpand-essentials_collapsed_tab_height: 50px; /*Each row of essentials is +50px tall*/
             }
 
             /* --- ROW 2: 5 to 8 children (Has a 5th child AND does not have a 9th child) --- */
             &:has(.zen-essentials-container > .tabbrowser-tab:nth-child(5)):not(
-            :has(.zen-essentials-container > .tabbrowser-tab:nth-child(9))
+                :has(.zen-essentials-container > .tabbrowser-tab:nth-child(9))
             ) {
                 --mod-autoexpand-essentials_collapsed_tab_height: 100px;
             }
 
             /* --- ROW 3: 9 to 12 children (Has a 9th child AND does not have a 13th child) --- */
             &:has(.zen-essentials-container > .tabbrowser-tab:nth-child(9)):not(
-            :has(.zen-essentials-container > .tabbrowser-tab:nth-child(13))
+                :has(.zen-essentials-container > .tabbrowser-tab:nth-child(13))
             ) {
                 --mod-autoexpand-essentials_collapsed_tab_height: 150px;
             }
@@ -1106,46 +1097,48 @@ EXPERIMENTAL FEATURES
              * and prevents layout thrashing on lower-end hardware (aka my shitty pc).
              */
             .zen-essentials-container {
-                overflow-y: clip !important;
-                min-width: 157.5px !important;
+                overflow-y: var(--is-collapsed, clip) !important;
+                min-width: var(--is-collapsed, 157.5px) !important;
 
                 /* Center collapsed essentials container */ /* [EES:TODO] - Center based on configured "mod.autoexpand.expanded_width" */
-                left: calc(
-                var(--zen-toolbox-padding) * .5
-                ) !important;
+                left: var(--is-collapsed, calc(
+                    var(--zen-toolbox-padding) * .5
+                )) !important;
 
                 /* Squish animation
                 transition:
                     transform var(--mod-autoexpand-animation_duration)
                     ease-out !important;
                 */
-                width: 150px !important; /* adjustable - horizontal spacing*/
 
-                transform: scaleX(
-                    0.25
-                ) !important; /* Squish Essentials to fit into collapsed sidebar */
-                transform-origin: top left !important;
-                height: var(
-                    --mod-autoexpand-essentials_collapsed_tab_height
-                ) !important;
+                /* Space Toggle, result
+                    Collapsed: 150px
+                    Expanded: calc(var(--expanded-tab-bar-width) - 0px))
+                */
+                width: var(--is-collapsed, 150px) var(--is-expanded, calc(var(--expanded-tab-bar-width) - 0px)) !important;
+
+                transform: var(--is-collapsed, scaleX(0.25)) !important; /* Squish Essentials to fit into collapsed sidebar */
+                transform-origin: var(--is-collapsed, top left) !important;
+                height: var(--is-collapsed, var(--mod-autoexpand-essentials_collapsed_tab_height)) !important;
 
                 > .tabbrowser-tab {
-                    justify-content: center !important;
-                    margin: 0px !important;
-                    --tab-min-height: 14px;
-                    --tab-min-width: 0px;
-                    height: 20px !important;
-                    width: 60px !important;
-                    max-width: 60px!important;
+                    justify-content: var(--is-collapsed, center) !important;
+                    margin: var(--is-collapsed, 0px) !important;
+                    --tab-min-height: var(--is-collapsed-var, 14px) inherit;
+                    --tab-min-width: var(--is-collapsed-var, 0px) inherit;
+                    height: var(--is-collapsed, 20px) !important;
+                    width: var(--is-collapsed, 60px) !important;
+                    max-width: var(--is-collapsed, 60px) !important;
+
                     .tab-stack {
-                        transform: scaleX(4)!important; /* Neutralize the distortion for the icons */
+                        transform: var(--is-collapsed, scaleX(4)) !important; /* Neutralize the distortion for the icons */
                     }
                 }
 
                 > .tabbrowser-tab,
                 #zen-welcome-initial-essentials-browser-sidebar-essentials .tabbrowser-tab {
                     &:not([visuallyselected], [multiselected="true"]) .tab-background {
-                      background: none !important;
+                        background: var(--is-collapsed, none) var(--is-expanded, color-mix(in srgb, currentColor 10%, transparent)) !important;
                     }
                 }
             }
@@ -1184,7 +1177,7 @@ EXPERIMENTAL FEATURES
             #zen-sidebar-top-buttons:not([customizing]):has(
                 #zen-sidebar-top-buttons-customization-target:empty, /* When no toolbar items */
                 #zen-sidebar-top-buttons-customization-target > #zen-sidebar-top-buttons-separator:only-child /* Sometimes this toolbar item shows up by itself, no idea why*/
-                ) {
+            ) {
                 min-height: 8px !important;
             }
         }
