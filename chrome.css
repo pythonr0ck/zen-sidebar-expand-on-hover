@@ -999,6 +999,32 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
 EXPERIMENTAL FEATURES
 */
 
+/* Define the end-state of the variables outside the #navigator-toolbox block */
+@keyframes zen-trigger-expanded {
+  to {
+    --is-collapsed: ;
+    --is-expanded: initial;
+  }
+}
+
+/* SPACE TOGGLE LOGIC FOR NAVIGATOR TOOLBOX */
+#navigator-toolbox {
+  /* Default state: Collapsed */
+  --is-collapsed: initial;
+  --is-expanded: ;
+
+  /* Expanded state trigger */
+  &:is(:hover, [has-popup-menu="true"], [movingtab], [flash-popup]),
+  &:has(#urlbar[open], toolbarbutton[open="true"]:not(#zen-sidepanel-button)) {
+    /* Suppress state untill animation delay duration has passed */
+    animation: zen-trigger-expanded max(50ms, var(--mod-autoexpand-animation_delay)) step-end forwards;
+  }
+  /* */
+  box.tab-reset-pin-button {
+    pointer-events: var(--is-collapsed, none);
+  }
+}
+
 /* Set default values */
 :root {
     /*--mod-autoexpand-essentials_expanded_tab_width: 75px; /*to-do, - should be actual width of each essential tab, should only be adjusted if some other mod changes the tab size*/
