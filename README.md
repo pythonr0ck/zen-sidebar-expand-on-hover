@@ -6,7 +6,10 @@ Personal fork (still works as of 1.21.14b) to add feature + aesthetics parity wi
 ### Changes so far:
 - ADD: Move tab sidebar downward of nav buttons [MvSB]
 - feat: Collapsed Essentials Styles [ESS]
+  - Compact-Style: Make all essential tabs visible in a compact grid, allows for quick essentials tab switching
 - feat: Collapsed Footer Buttons Layout [CFL]
+- fix: selective suppression during delay on hover
+  - fixes [#19](https://github.com/StormAnon/zen-sidebar-expand-on-hover/issues/24)
 
 **IMPORTANT**: Turn the mod off or on with the fullscreen toggle (F11)  
 **IMPORTANT**: Use the mod in single toolbar or multiple toolbars mode, never on collapsed toolbar mode
