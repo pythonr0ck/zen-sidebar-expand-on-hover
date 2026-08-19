@@ -1098,7 +1098,7 @@ EXPERIMENTAL FEATURES
              */
             .zen-essentials-container {
                 overflow-y: var(--is-collapsed, clip) !important;
-                min-width: var(--is-collapsed, 157.5px) !important;
+                min-width: var(--is-collapsed, 158px) !important;
 
                 /* Center collapsed essentials container */ /* [EES:TODO] - Center based on configured "mod.autoexpand.expanded_width" */
                 left: var(--is-collapsed, calc(
