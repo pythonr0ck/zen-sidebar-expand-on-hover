@@ -39,9 +39,9 @@
     },
     {
         "property": "mod.autoexpand.animation_delay",
-        "label": "Delay before expanding after hover (default: 0ms)",
+        "label": "Delay before expanding after hover (default: 210ms)",
         "type": "string",
-        "defaultValue": "0ms"
+        "defaultValue": "210ms"
     },
     {
         "property": "mod.autoexpand.collapse_delay",
