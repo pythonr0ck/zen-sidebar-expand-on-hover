@@ -999,7 +999,7 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
 EXPERIMENTAL FEATURES
 */
 
-/* Define the end-state of the variables outside the #navigator-toolbox block */
+/* Define the end-state of the variables (Expanded state) */
 @keyframes zen-trigger-expanded {
   to {
     --is-collapsed: ;
@@ -1008,7 +1008,7 @@ EXPERIMENTAL FEATURES
   }
 }
 
-/* SPACE TOGGLE LOGIC FOR NAVIGATOR TOOLBOX */
+/* SPACE TOGGLE LOGIC: selective suppresion */
 #navigator-toolbox {
   /* Default state: Collapsed */
   --is-collapsed: initial;
@@ -1088,10 +1088,8 @@ EXPERIMENTAL FEATURES
                 overflow-y: var(--is-collapsed, clip) !important;
                 min-width: var(--is-collapsed, 158px) !important;
 
-                /* Center collapsed essentials container */ /* [EES:TODO] - Center based on configured "mod.autoexpand.expanded_width" */
-                left: var(--is-collapsed, calc(
-                    var(--zen-toolbox-padding) * .5
-                )) !important;
+                /* Center collapsed essentials container */
+                left: var(--is-collapsed, calc(var(--zen-toolbox-padding) * .5)) !important;
 
                 /* Squish animation
                 transition:
@@ -1099,14 +1097,11 @@ EXPERIMENTAL FEATURES
                     ease-out !important;
                 */
 
-                /* Space Toggle, result
-                    Collapsed: 150px
-                    Expanded: calc(var(--expanded-tab-bar-width) - 0px))
-                */
                 width: var(--is-collapsed, 150px) var(--is-expanded, calc(var(--expanded-tab-bar-width) - 0px)) !important;
 
                 transform: var(--is-collapsed, scaleX(0.25)) !important; /* Squish Essentials to fit into collapsed sidebar */
                 transform-origin: var(--is-collapsed, top left) !important;
+
                 height: var(--is-collapsed, var(--mod-autoexpand-essentials_collapsed_tab_height)) !important;
 
                 > .tabbrowser-tab {
