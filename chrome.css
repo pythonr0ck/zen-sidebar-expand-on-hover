@@ -1088,10 +1088,13 @@ EXPERIMENTAL FEATURES
                 overflow-y: var(--is-collapsed, clip) !important;
                 min-width: var(--is-collapsed, 158px) !important;
 
-                /* Center by subtracting the visually scaled width (150px + padding @ 25% scaleX) from the sidebar width, divided by 2 */
-                left: calc(
-                    (var(--collapsed-tab-bar-width) - ((150px + var(--zen-toolbox-padding)) * 0.25)) / 2
+                /* Center by subtracting the visually scaled width (150px width + padding @ 25% scaleX) from the sidebar width, divided by 2 */
+                left: var(--is-collapsed,
+                    calc(
+                        (var(--collapsed-tab-bar-width) - ((150px + var(--zen-toolbox-padding)) * 0.25)) / 2
+                    )
                 ) !important;
+
 
                 /* Squish animation
                 transition:
