@@ -1088,8 +1088,10 @@ EXPERIMENTAL FEATURES
                 overflow-y: var(--is-collapsed, clip) !important;
                 min-width: var(--is-collapsed, 158px) !important;
 
-                /* Center collapsed essentials container */
-                left: var(--is-collapsed, calc(var(--zen-toolbox-padding) * .5)) !important;
+                /* Center by subtracting the visually scaled width (150px + padding @ 25% scaleX) from the sidebar width, divided by 2 */
+                left: calc(
+                    (var(--collapsed-tab-bar-width) - ((150px + var(--zen-toolbox-padding)) * 0.25)) / 2
+                ) !important;
 
                 /* Squish animation
                 transition:
