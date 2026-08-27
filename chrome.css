@@ -739,16 +739,18 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
             }
       }
       @media (-moz-pref("mod.autoexpand.collapsed_footer_style", "centered_workspace")) {
-            #zen-sidebar-foot-buttons > *:not(#zen-workspaces-button){
+            #zen-sidebar-foot-buttons > *:not(#zen-workspaces-button) {
                 opacity: 0% !important;
             }
 
-            /*removes gap in the foot buttons*/
-            #zen-sidebar-foot-buttons{
+            /* Removes gap in the foot buttons */
+            #zen-sidebar-foot-buttons {
                 gap: 0 !important;
+                /* Define the width of standard short buttons to calculate dynamic offset */
+                --_short-btn-width: 28px;
             }
 
-            /*Makes so that the selected workspace button is centered in the collapsed state. Moves the download button to the outside edge*/
+            /* Makes so that the selected workspace button is centered in the collapsed state. */
             #zen-workspaces-button {
                 justify-content: center !important;
                 .subviewbutton:not([active="true"]) {
@@ -760,21 +762,21 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
                     position: absolute !important;
                 }
             }
+
+            /* LEFT SIDEBAR MATH */
             #navigator-toolbox:not([zen-right-side="true"]) #zen-workspaces-button {
-                transform: translateX(calc(var(--collapsed-tab-bar-width)/2 - var(--expanded-tab-bar-width)/2 + 2px));
+                --_dynamic-offset: calc(var(--_short-btn-width) * (2 * sibling-index() - sibling-count() - 1));
+                transform: translateX(calc( (var(--collapsed-tab-bar-width) - var(--expanded-tab-bar-width) - var(--_dynamic-offset)) / 2 + 2px ));
             }
+
+            /* RIGHT SIDEBAR MATH */
             #navigator-toolbox[zen-right-side="true"] {
                 #zen-workspaces-button {
-                    transform: translateX(calc(var(--expanded-tab-bar-width)/2 - var(--collapsed-tab-bar-width)/2 - 2px));
-                }
-                #downloads-button{
-                    order: 999 !important;
-                }
-                #zen-create-new-button{
-                    order: -1 !important;
+                    --_dynamic-offset: calc(var(--_short-btn-width) * (sibling-count() - 2 * sibling-index() + 1));
+                    transform: translateX(calc( (var(--expanded-tab-bar-width) - var(--collapsed-tab-bar-width) + var(--_dynamic-offset)) / 2 - 2px ));
                 }
             }
-        }
+      }
 
       /*collapses the thin line separator*/
       @media not (-moz-bool-pref: "zen.tabs.vertical.right-side"){
