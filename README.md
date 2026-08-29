@@ -11,7 +11,7 @@ Personal fork (still works as of 1.21.15b) to add feature + aesthetics parity wi
 - fix: selective suppression during delay on hover
   - fixes [#19](https://github.com/StormAnon/zen-sidebar-expand-on-hover/issues/19)
 - fix: adjust centered_workspace to dynamic toolbar
-  - fixes [#22](https://github.com/StormAnon/zen-sidebar-expand-on-hover/issues/22
+  - fixes [#22](https://github.com/StormAnon/zen-sidebar-expand-on-hover/issues/22)
 
 **IMPORTANT**: Turn the mod off or on with the fullscreen toggle (F11)  
 **IMPORTANT**: Use the mod in single toolbar or multiple toolbars mode, never on collapsed toolbar mode

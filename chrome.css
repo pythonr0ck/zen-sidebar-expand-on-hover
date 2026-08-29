@@ -743,7 +743,6 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
                 opacity: 0% !important;
             }
 
-            /* Removes gap in the foot buttons */
             #zen-sidebar-foot-buttons {
                 gap: 0 !important;
                 /* Define the width of standard short buttons to calculate dynamic offset */
@@ -763,13 +762,11 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
                 }
             }
 
-            /* LEFT SIDEBAR MATH */
             #navigator-toolbox:not([zen-right-side="true"]) #zen-workspaces-button {
                 --_dynamic-offset: calc(var(--_short-btn-width) * (2 * sibling-index() - sibling-count() - 1));
                 transform: translateX(calc( (var(--collapsed-tab-bar-width) - var(--expanded-tab-bar-width) - var(--_dynamic-offset)) / 2 + 2px ));
             }
 
-            /* RIGHT SIDEBAR MATH */
             #navigator-toolbox[zen-right-side="true"] {
                 #zen-workspaces-button {
                     --_dynamic-offset: calc(var(--_short-btn-width) * (sibling-count() - 2 * sibling-index() + 1));
@@ -1037,12 +1034,7 @@ EXPERIMENTAL FEATURES
         /* Collapsed Zen Essentials (On Collapsed Bar)*/
         #navigator-toolbox {
             /*
-             * Determine Essentials Container Height
-             *
-             * (Since JS is obviously not available to get the actual height of the expanded container directly,
-             * we use a workaround...)
-             * This solution determines the current height of the expanded essentials tab container
-             * based on the number of children (.tabbrowser-tab)
+             * Determine essentials container height based on the number of essentials tabs
              * and sets the --mod-autoexpand-essentials_collapsed_tab_height variable accordingly.
              */
             /* --- 0 children (Does not have a 1st child) --- */
