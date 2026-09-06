@@ -1039,28 +1039,28 @@ EXPERIMENTAL FEATURES
              */
             /* --- 0 children (Does not have a 1st child) --- */
             &:not(:has(.zen-essentials-container > .tabbrowser-tab:first-child)) {
-                --mod-autoexpand-essentials_collapsed_tab_height: 0px; /*Each row of essentials is +50px tall*/
+                --mod-autoexpand-essentials_collapsed_tab_height: 0px; /*Each row of essentials is +54px tall*/
             }
 
             /* --- ROW 1: 1 to 4 children (Does not have a 5th child) --- */
             &:has(.zen-essentials-container > .tabbrowser-tab:nth-child(1)):not(
                 :has(.zen-essentials-container > .tabbrowser-tab:nth-child(5))
             ) {
-                --mod-autoexpand-essentials_collapsed_tab_height: 50px; /*Each row of essentials is +50px tall*/
+                --mod-autoexpand-essentials_collapsed_tab_height: 54px; /*Each row of essentials is +54px tall*/
             }
 
             /* --- ROW 2: 5 to 8 children (Has a 5th child AND does not have a 9th child) --- */
             &:has(.zen-essentials-container > .tabbrowser-tab:nth-child(5)):not(
                 :has(.zen-essentials-container > .tabbrowser-tab:nth-child(9))
             ) {
-                --mod-autoexpand-essentials_collapsed_tab_height: 100px;
+                --mod-autoexpand-essentials_collapsed_tab_height: 104px;
             }
 
             /* --- ROW 3: 9 to 12 children (Has a 9th child AND does not have a 13th child) --- */
             &:has(.zen-essentials-container > .tabbrowser-tab:nth-child(9)):not(
                 :has(.zen-essentials-container > .tabbrowser-tab:nth-child(13))
             ) {
-                --mod-autoexpand-essentials_collapsed_tab_height: 150px;
+                --mod-autoexpand-essentials_collapsed_tab_height: 154px;
             }
             /*
              * Compact-Style Collapsed Essentials Implementation NOTE:
