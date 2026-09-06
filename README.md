@@ -1,7 +1,7 @@
 # Sidebar Expand on Hover
 ![](./screenshot.png)
 
-Personal fork (still works as of 1.21.15b) to add feature + aesthetics parity with my [past implementation of a expand-sidebar-on-hover mod](https://github.com/pythonr0ck/zen-mods).
+Personal fork (still works as of 1.21.22b) to add feature + aesthetics parity with my [past implementation of a expand-sidebar-on-hover mod](https://github.com/pythonr0ck/zen-mods).
 
 ### Changes so far:
 - ADD: Move tab sidebar downward of nav buttons [MvSB]
