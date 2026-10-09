@@ -1,7 +1,7 @@
 # Sidebar Expand on Hover
 ![](./screenshot.png)
 
-Personal fork (still works as of 1.21.22b) to add feature + aesthetics parity with my [past implementation of a expand-sidebar-on-hover mod](https://github.com/pythonr0ck/zen-mods).
+Personal fork (still works as of 1.22.2b) to add feature + aesthetics parity with my [past implementation of a expand-sidebar-on-hover mod](https://github.com/pythonr0ck/zen-mods).
 
 ### Changes so far:
 - ADD: Move tab sidebar downward of nav buttons [MvSB]
@@ -13,6 +13,7 @@ Personal fork (still works as of 1.21.22b) to add feature + aesthetics parity wi
 - fix: adjust centered_workspace to dynamic toolbar
   - fixes [#22](https://github.com/StormAnon/zen-sidebar-expand-on-hover/issues/22)
 
+**IMPORTANT**: macOS support is not a priority (untested); I use Linux (primary support) and Windows (secondary support, may have small visual bugs/offset padding)  
 **IMPORTANT**: Turn the mod off or on with the fullscreen toggle (F11)  
 **IMPORTANT**: Use the mod in single toolbar or multiple toolbars mode, never on collapsed toolbar mode
 
