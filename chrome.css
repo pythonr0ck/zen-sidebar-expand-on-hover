@@ -16,7 +16,7 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
       --transition-delay-after: var(--mod-autoexpand-collapse_delay);
       --collapsed-tab-bar-width: var(--mod-autoexpand-collapsed_width);
       --win-radius: 6px;
-      --linux-radius: 8px;
+      --linux-radius: 10.8px; /* Approximates the smooth v1.22b squircle profile using standard corner radius (TODO: temporary fix, linux-only for now) */
       --mac-radius: 10px;
 
       @media (-moz-bool-pref: "zen.tabs.vertical.right-side"){
@@ -267,9 +267,13 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
                 transform: translateX(0px);
                 flex-direction: row !important;
                 justify-content: normal !important;
-                /* Continue to visuallly center when collapsed */
-                padding-left: 6px !important;
-                padding-right: 6px !important;
+                @media not (-moz-platform: macos) {
+                    /* Continue to visuallly center when collapsed, confirmed on Zen Linux, untested on Windows */
+                    padding-left: 6px !important;
+                    padding-right: 6px !important;
+                    margin-top: -1px !important; /* might make more sense to replace both negative margins and instead apply a min-height:<tallest child element inside #zen-sidebar-foot-buttons px height> to #zen-sidebar-foot-buttons > :is(:first-child), probably move code to the second @media "standard" query at line ~715*/
+                    margin-bottom: -1px !important;
+                }
 
                 > :not(:first-child) {
                 display: flex !important;
