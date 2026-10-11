@@ -271,8 +271,6 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
                     /* Continue to visuallly center when collapsed, confirmed on Zen Linux, untested on Windows */
                     padding-left: 6px !important;
                     padding-right: 6px !important;
-                    margin-top: -1px !important; /* might make more sense to replace both negative margins and instead apply a min-height:<tallest child element inside #zen-sidebar-foot-buttons px height> to #zen-sidebar-foot-buttons > :is(:first-child), probably move code to the second @media "standard" query at line ~715*/
-                    margin-bottom: -1px !important;
                 }
 
                 > :not(:first-child) {
@@ -716,6 +714,7 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
                 transform: translateX(calc(var(--collapsed-tab-bar-width)/2 - var(--expanded-tab-bar-width)/2 + 2px));
                 flex-direction: column-reverse !important;
                 justify-content: center !important;
+                min-height: 30px!important;
 
                 /* Display only first foot item and current download status/other status that rely on the notification attribute */
                 /*:not([notification]):not([checked]):not(:first-child) - include toggleable states too (like if the sidebar is open)*/
