@@ -222,8 +222,8 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
       width: var(--expanded-tab-bar-width) !important;
       --hover-width: 100px;
 
-      /*Expanded state. Activates on hover, popup menu, etc*/
-      &:is(:hover, [has-popup-menu="true"], [movingtab], [flash-popup]), &:has(#urlbar[open], toolbarbutton[open="true"]:not(#zen-sidepanel-button)) {
+      /*Expanded state. Activates on hover, popup menu, etc*/ /* TODO:tempfix:Upon opening Zen Library: ([style*="scale(0.96); opacity: 0;"])*/
+      &:is(:hover, [has-popup-menu="true"], [movingtab], [flash-popup], [style*="scale(0.96); opacity: 0;"]), &:has(#urlbar[open], toolbarbutton[open="true"]:not(#zen-sidepanel-button)) {
         --transition-delay-smooth: calc(var(--transition-delay) + 0ms);
         --transition-delay-fast: var(--transition-delay);
         ~ #zen-appcontent-wrapper{
@@ -414,7 +414,7 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
 
       /*Adds space for the tab icons*/
       #navigator-toolbox:not([zen-right-side="true"]) ~ #zen-appcontent-wrapper{
-      margin-left: var(--collapsed-tab-bar-width);
+      margin-left: calc(var(--collapsed-tab-bar-width) + 5px);
       }
       #navigator-toolbox[zen-right-side="true"] ~ #zen-appcontent-wrapper{
       margin-right: var(--collapsed-tab-bar-width);
