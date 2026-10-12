@@ -222,8 +222,8 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
       width: var(--expanded-tab-bar-width) !important;
       --hover-width: 100px;
 
-      /*Expanded state. Activates on hover, popup menu, etc*/ /* TODO:tempfix:Upon opening Zen Library: ([style*="scale(0.96); opacity: 0;"])*/
-      &:is(:hover, [has-popup-menu="true"], [movingtab], [flash-popup], [style*="scale(0.96); opacity: 0;"]), &:has(#urlbar[open], toolbarbutton[open="true"]:not(#zen-sidepanel-button)) {
+      /*Expanded state. Activates on hover, popup menu, etc*/
+      &:is(:hover, [has-popup-menu="true"], [movingtab], [flash-popup]), &:has(#urlbar[open], toolbarbutton[open="true"]:not(#zen-sidepanel-button)) {
         --transition-delay-smooth: calc(var(--transition-delay) + 0ms);
         --transition-delay-fast: var(--transition-delay);
         ~ #zen-appcontent-wrapper{
@@ -419,7 +419,34 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
       #navigator-toolbox[zen-right-side="true"] ~ #zen-appcontent-wrapper{
       margin-right: var(--collapsed-tab-bar-width);
       }
+      /* Library subtracts the toolbox width when offsetting the page.
+         Animate that reserved width back after Library finishes closing. */
+      #navigator-toolbox ~ #zen-appcontent-wrapper {
+        transition: margin-left var(--transition-duration) ease-in-out,
+                    margin-right var(--transition-duration) ease-in-out !important;
+      }
 
+      /* Library covers and fades the toolbox; leave its hover state alone so
+         closing Library does not trigger a second, delayed sidebar collapse. */
+      &:has(zen-library[open]) {
+        #navigator-toolbox:not([zen-right-side="true"]) ~ #zen-appcontent-wrapper {
+          margin-left: var(--expanded-tab-bar-width);
+        }
+        #navigator-toolbox[zen-right-side="true"] ~ #zen-appcontent-wrapper {
+          margin-right: var(--expanded-tab-bar-width);
+        }
+
+        #navigator-toolbox ~ #zen-appcontent-wrapper {
+          z-index: var(--zen-main-app-child-z-index, 1) !important;
+          /* Library drives transform directly with its spring animation. */
+          transition: none !important;
+        }
+
+        #tabbrowser-tabbox, #PersonalToolbar, #tabbrowser-tabpanels {
+          clip-path: none !important;
+          transition: none !important;
+        }
+      }
       /*Inverts elements if the tab bar is right-sided. Done this way because translating the whole navigator-toolbox makees the clip path laggy*/
       #navigator-toolbox[zen-right-side="true"]{
       .zen-essentials-container{
