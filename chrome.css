@@ -440,10 +440,10 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
 
       /*Adds space for the tab icons*/
       #navigator-toolbox:not([zen-right-side="true"]) ~ #zen-appcontent-wrapper{
-      margin-left: var(--collapsed-tab-bar-width);
+      margin-left: calc(var(--collapsed-tab-bar-width) + 5px); /*(TODO: 1.23b (at least confirmed on Linux version) now requires a +5px padding here; check if padding issue affects macOS)*/
       }
       #navigator-toolbox[zen-right-side="true"] ~ #zen-appcontent-wrapper{
-      margin-right: var(--collapsed-tab-bar-width);
+      margin-right: calc(var(--collapsed-tab-bar-width) + 5px);
       }
 
       /* Library now measures the same collapsed width reserved by the page,
