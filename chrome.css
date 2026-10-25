@@ -879,9 +879,16 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
       #navigator-toolbox{
       .workspace-arrowscrollbox{
         width: calc(var(--expanded-tab-bar-width) + 0px) !important;
+        &::before, &::after {
+          width: calc(100% - 5px) !important;
+        }
       }
       &[zen-right-side="true"] .workspace-arrowscrollbox{
         margin-left: auto !important;
+        &::before, &::after {
+          left: 5px !important;
+          right: 0 !important;
+        }
       }
       &:not([zen-right-side="true"]) .workspace-arrowscrollbox{
         margin-right: auto !important;
