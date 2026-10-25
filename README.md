@@ -1,22 +1,21 @@
 # Sidebar Expand on Hover
 ![](./screenshot.png)
 
-Personal fork (still works as of 1.22.2b) to add feature + aesthetics parity with my [past implementation of a expand-sidebar-on-hover mod](https://github.com/pythonr0ck/zen-mods).
+Personal fork (supports Zen 1.23b) to add feature + aesthetics parity with my [past implementation of a expand-sidebar-on-hover mod](https://github.com/pythonr0ck/zen-mods).
+
+> Updates may not always be completely up-to-date with the latest Zen version since I like to hang on older Zen versions a little longer.  
+> - macOS support is not a priority (untested/delayed fixes may still happen); I use Linux! (primary support)
 
 ### Changes so far:
 - ADD: Move tab sidebar downward of nav buttons [MvSB]
 - feat: Collapsed Essentials Styles [ESS]
   - Compact-Style: Make all essential tabs visible in a compact grid, allows for quick essentials tab switching
+    - still incomplete; fixing small visual bugs
 - feat: Collapsed Footer Buttons Layout [CFL]
 - fix: selective suppression during delay on hover
   - fixes [#19](https://github.com/StormAnon/zen-sidebar-expand-on-hover/issues/19)
 - fix: adjust centered_workspace to dynamic toolbar
   - fixes [#22](https://github.com/StormAnon/zen-sidebar-expand-on-hover/issues/22)
-
-**IMPORTANT**:  
-- macOS support is not a priority (untested); I use Linux! (primary support)
-  
-Updates may not always be completely up-to-date with the latest Zen version since I like to hang on older Zen versions a little longer.
   
 **IMPORTANT**: Turn the mod off or on with the fullscreen toggle (F11)  
 **IMPORTANT**: Use the mod in single toolbar or multiple toolbars mode, never on collapsed toolbar mode
