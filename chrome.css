@@ -754,8 +754,13 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
       }
 
       @media (-moz-pref("mod.autoexpand.collapsed_footer_style", "standard")) {
-            #zen-sidebar-foot-buttons {
+            #navigator-toolbox:not([zen-right-side="true"]) #zen-sidebar-foot-buttons {
                 transform: translateX(calc(var(--collapsed-tab-bar-width)/2 - var(--expanded-tab-bar-width)/2 + 2px));
+            }
+            #navigator-toolbox[zen-right-side="true"] #zen-sidebar-foot-buttons {
+                transform: translateX(calc(var(--expanded-tab-bar-width)/2 - var(--collapsed-tab-bar-width)/2 - 2px));
+            }
+            #zen-sidebar-foot-buttons {
                 flex-direction: column-reverse !important;
                 justify-content: center !important;
                 min-height: 30px!important;
@@ -1078,6 +1083,19 @@ EXPERIMENTAL FEATURES
         [zen-compact-mode="true"],
         :has(#customization-container:not([hidden]))
     ) {
+        /* right-side tab support for compact essentials
+            - (janky, would prefer if it didnt rely on var(--is-collapsed) space toggle)
+        #navigator-toolbox[zen-right-side="true"] .zen-essentials-container {
+            transform: var(--is-collapsed,
+                translateX(
+                    calc(
+                        var(--expanded-tab-bar-width) - var(--collapsed-tab-bar-width) - 7px
+                    )
+                )
+                scaleX(0.25)
+            ) !important;
+        }
+        */
         /* Collapsed Zen Essentials (On Collapsed Bar)*/
         #navigator-toolbox {
             /*
@@ -1086,14 +1104,14 @@ EXPERIMENTAL FEATURES
              */
             /* --- 0 children (Does not have a 1st child) --- */
             &:not(:has(.zen-essentials-container > .tabbrowser-tab:first-child)) {
-                --mod-autoexpand-essentials_collapsed_tab_height: 0px; /*Each row of essentials is +54px tall*/
+                --mod-autoexpand-essentials_collapsed_tab_height: 0px; /*Each row of essentials is +50px tall + 4px padding*/
             }
 
             /* --- ROW 1: 1 to 4 children (Does not have a 5th child) --- */
             &:has(.zen-essentials-container > .tabbrowser-tab:nth-child(1)):not(
                 :has(.zen-essentials-container > .tabbrowser-tab:nth-child(5))
             ) {
-                --mod-autoexpand-essentials_collapsed_tab_height: 54px; /*Each row of essentials is +54px tall*/
+                --mod-autoexpand-essentials_collapsed_tab_height: 54px; /*Each row of essentials is +50px tall + 4px padding*/
             }
 
             /* --- ROW 2: 5 to 8 children (Has a 5th child AND does not have a 9th child) --- */
