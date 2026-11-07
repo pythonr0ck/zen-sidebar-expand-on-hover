@@ -1,10 +1,12 @@
 # Sidebar Expand on Hover
 ![](./screenshot.png)
 
-Personal fork (supports Zen 1.23b) to add feature + aesthetics parity with my [past implementation of a expand-sidebar-on-hover mod](https://github.com/pythonr0ck/zen-mods).
+> Install via sine with: `pythonr0ck/zen-sidebar-expand-on-hover/tree/sine`
 
-> Updates may not always be completely up-to-date with the latest Zen version since I like to hang on older Zen versions a little longer.  
-> - macOS support is not a priority (untested/delayed fixes may still happen); I use Linux! (primary support)
+Personal fork (supports Zen 1.24b) to add feature + aesthetics parity with my [past implementation of a expand-sidebar-on-hover mod](https://github.com/pythonr0ck/zen-mods).
+
+ - Updates may not always be completely up-to-date with the latest Zen version since I like to hang on older Zen versions a little longer.  
+ - macOS support is not a priority (untested/delayed fixes may still happen); I use Linux! (primary support)
 
 ### Changes so far:
 - ADD: Move tab sidebar downward of nav buttons [MvSB]
@@ -37,7 +39,6 @@ In the mods menu, clicking on the gear icon will give you several customization 
   - *Standard: Center Buttons, dynamically show when item is being downloaded*
 
 ## How to Download
-> Occassionally, I may make some breaking changes to the mod preferences. Sometimes a full reinstall of the mod is required.
 
 ### Download with Sine Mod Manager
 Using Sine will allow this mod to be updated as this mod receives updates through github.
