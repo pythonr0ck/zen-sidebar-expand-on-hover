@@ -17,8 +17,8 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
       --collapsed-tab-bar-width: var(--mod-autoexpand-collapsed_width);
       --sidebar-reserved-width: calc(var(--collapsed-tab-bar-width) + 5px);
       --win-radius: 6px;
-      --linux-radius: 10.8px; /* Approximates the smooth v1.22b squircle profile using standard corner radius (TODO: temporary fix, linux-only for now) */
-      --mac-radius: 10px;
+      --linux-radius: 10.8px; /* Approximates v1.22b G2 squircle roundness (TODO: temporary fix) */
+      --mac-radius: 10.8px; /* Approximates v1.22b G2 squircle roundness (TODO: temporary fix) */
 
       @media (-moz-bool-pref: "zen.tabs.vertical.right-side"){
         --expanded-tab-bar-width: clamp(350px, var(--mod-autoexpand-expanded_width),9999px);
@@ -1123,6 +1123,9 @@ EXPERIMENTAL FEATURES
                 :has(.zen-essentials-container > .tabbrowser-tab:nth-child(5))
             ) {
                 --mod-autoexpand-essentials_collapsed_tab_height: 54px; /*Each row of essentials is +50px tall + 4px padding*/
+                @media (-moz-platform: macos) {
+                  --mod-autoexpand-essentials_collapsed_tab_height: 50px; /*macOS lacks 4px padding*/
+                }
             }
 
             /* --- ROW 2: 5 to 8 children (Has a 5th child AND does not have a 9th child) --- */
@@ -1130,6 +1133,9 @@ EXPERIMENTAL FEATURES
                 :has(.zen-essentials-container > .tabbrowser-tab:nth-child(9))
             ) {
                 --mod-autoexpand-essentials_collapsed_tab_height: 104px;
+                @media (-moz-platform: macos) {
+                  --mod-autoexpand-essentials_collapsed_tab_height: 100px; /*macOS lacks 4px padding*/
+                }
             }
 
             /* --- ROW 3: 9 to 12 children (Has a 9th child AND does not have a 13th child) --- */
@@ -1137,6 +1143,9 @@ EXPERIMENTAL FEATURES
                 :has(.zen-essentials-container > .tabbrowser-tab:nth-child(13))
             ) {
                 --mod-autoexpand-essentials_collapsed_tab_height: 154px;
+                @media (-moz-platform: macos) {
+                  --mod-autoexpand-essentials_collapsed_tab_height: 150px; /*macOS lacks 4px padding*/
+                }
             }
             /*
              * Compact-Style Collapsed Essentials Implementation NOTE:
