@@ -810,6 +810,7 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
                 gap: 0 !important;
                 /* Define the width of standard short buttons to calculate dynamic offset */
                 --_short-btn-width: 28px;
+                --_non-toolbarbutton-siblings: 1; /* 1.23b introduced zen-library-download-list element, future-proof fix would depend on (or stop use of transforms for centered_workspace): https://github.com/w3c/csswg-drafts/issues/9572 */
             }
 
             /* Makes so that the selected workspace button is centered in the collapsed state. */
@@ -826,13 +827,13 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
             }
 
             #navigator-toolbox:not([zen-right-side="true"]) #zen-workspaces-button {
-                --_dynamic-offset: calc(var(--_short-btn-width) * (2 * sibling-index() - sibling-count() - 1));
+                --_dynamic-offset: calc(var(--_short-btn-width) * (2 * sibling-index() - sibling-count() + var(--_non-toolbarbutton-siblings) - 1));
                 transform: translateX(calc( (var(--collapsed-tab-bar-width) - var(--expanded-tab-bar-width) - var(--_dynamic-offset)) / 2 + 2px ));
             }
 
             #navigator-toolbox[zen-right-side="true"] {
                 #zen-workspaces-button {
-                    --_dynamic-offset: calc(var(--_short-btn-width) * (sibling-count() - 2 * sibling-index() + 1));
+                    --_dynamic-offset: calc(var(--_short-btn-width) * (sibling-count() - 2 * sibling-index() + var(--_non-toolbarbutton-siblings) + 1));
                     transform: translateX(calc( (var(--expanded-tab-bar-width) - var(--collapsed-tab-bar-width) + var(--_dynamic-offset)) / 2 - 2px ));
                 }
             }
