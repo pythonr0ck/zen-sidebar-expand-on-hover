@@ -16,6 +16,9 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
       --transition-delay-after: var(--mod-autoexpand-collapse_delay);
       --collapsed-tab-bar-width: var(--mod-autoexpand-collapsed_width);
       --sidebar-reserved-width: calc(var(--collapsed-tab-bar-width) + 5px);
+      @supports not at-rule(@scope) { /* continue support for Zen 1.22b */
+          --sidebar-reserved-width: var(--collapsed-tab-bar-width);
+      }
       --win-radius: 6px;
       --linux-radius: 10.8px; /* Approximates v1.22b G2 squircle roundness (TODO: temporary fix) */
       --mac-radius: 10.8px; /* Approximates v1.22b G2 squircle roundness (TODO: temporary fix) */
