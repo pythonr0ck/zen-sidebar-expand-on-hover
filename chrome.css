@@ -839,20 +839,6 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
             }
       }
 
-      /*collapses the thin line separator*/
-      @media not (-moz-bool-pref: "zen.tabs.vertical.right-side"){
-        .pinned-tabs-container-separator{
-          width: calc(var(--collapsed-tab-bar-width) - 0px) !important;
-          padding-right: 7px !important;
-        }
-      }
-      @media (-moz-bool-pref: "zen.tabs.vertical.right-side"){
-        .pinned-tabs-container-separator{
-          width: calc(var(--collapsed-tab-bar-width) - 0px) !important;
-          padding-left: 4px !important;
-        }
-      }
-
       /*Positions back button to the left (sane layout)*/
       #zen-sidebar-top-buttons-customization-target{
       margin-left: calc(var(--collapsed-tab-bar-width)/2 - 18px) !important;
